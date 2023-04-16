@@ -28,7 +28,7 @@ class Main {
         }
 
         public static String intToRoman(int d) {
-            String result = "";
+            String result;
             result = roman[d - 1];
             return result;
         }
@@ -37,10 +37,10 @@ class Main {
         public static String calc(String input) {
             String[] arr = input.split(" ");
             if (arr.length > 3) {
-                throw new IllegalArgumentException("Неподходящее количество аргументов");
+                throw new IllegalArgumentException();
             }
-            int a = 0;
-            int b = 0;
+            int a;
+            int b;
             boolean isRoman = false;
             try {
                 a = Integer.parseInt(arr[0]);
@@ -51,28 +51,18 @@ class Main {
                 b = Converts.romanToInt(arr[2]);
             }
             if ((a < 1 || a > 10 || b < 1 || b > 10)) {
-                throw new IllegalArgumentException("Числа должны быть в диапазоне от 1 до 10 включительно");
+                throw new IllegalArgumentException();
             }
-            int res;
-            switch (arr[1]) {
-                case "+":
-                    res = a + b;
-                    break;
-                case "-":
-                    res = a - b;
-                    break;
-                case "*":
-                    res = a * b;
-                    break;
-                case "/":
-                    res = a / b;
-                    break;
-                default:
-                    throw new IllegalArgumentException("Недопустимая операция");
-            }
+            int res = switch (arr[1]) {
+                case "+" -> a + b;
+                case "-" -> a - b;
+                case "*" -> a * b;
+                case "/" -> a / b;
+                default -> throw new IllegalArgumentException();
+            };
             if (isRoman) {
                 if (res < 1) {
-                    throw new IllegalArgumentException("Результат не может быть меньше единицы");
+                    throw new IllegalArgumentException();
                 }
                 return Converts.intToRoman(res);
             } else {
