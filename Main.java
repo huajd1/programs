@@ -5,11 +5,7 @@ class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        try {
-            System.out.println(calc(input));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        System.out.println(calc(input));
     }
 
     public static class Converts {
